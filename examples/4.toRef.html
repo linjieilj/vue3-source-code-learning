@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=!, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+
+    <div id="app"></div>
+
+    <script src="../node_modules/@vue/reactivity/dist/reactivity.global.js"></script>
+    <script>
+      const {effect, reactive, ref, shallowRef, toRef, toRefs} = VueReactivity
+      let proxy = reactive({name: 'jay', age: 29})
+
+      let {name, age} = toRefs(proxy)
+
+      effect(() => {
+        app.innerHTML = name.value + age.value
+      })
+
+      setTimeout(() => {
+        proxy.name = 'swj'
+      }, 1000)
+
+      // reactive 就是响应式api
+      // ref 普通值只能用ref
+      // 想对响应式数据解构赋值 reactive -> toRefs, 解构某一个 用toRef
+      // effect track trigger
+
+      //watchEffect -> runtime-core -> watch -> watch flush post
+    </script>
+  </body>
+</html>
